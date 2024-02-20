@@ -1,0 +1,98 @@
+#include<iostream>
+using namespace std;
+/*class Node{
+    public: 
+        int data;
+        Node* left;
+        Node* right;
+        Node(int data){
+            this->data = data;
+            left = NULL;
+            right = NULL;
+            }};*/
+class Tree{
+    public:
+        int data;
+        Tree* left;
+        Tree* right;
+        
+        Tree(int data){
+            this->data = data;
+            left = NULL;
+            right = NULL;
+            }
+        void insert(int data){
+        Tree* tmp = new Tree(data);
+        Tree* trav = NULL;
+        Tree* prev = NULL;
+        if(data > this->data){
+            trav = right;
+            prev = trav;
+            while(trav != NULL){
+                prev = trav;
+                if(data < trav->data)
+                    trav = trav->left;
+                else
+                    trav = trav->right;
+            }
+            prev = tmp;
+                }
+        else{
+                trav = left;
+            prev = trav;
+            while(trav != NULL){
+                prev = trav;
+                if(data < trav->data)
+                    trav = trav->left;
+                else
+                    trav = trav->right;
+            }
+            prev = tmp;
+            }
+            }
+        bool search(int data){
+            Tree *trav = NULL;
+            if(this->data == data)
+                return true;
+                
+            else if(data < this->data){
+                trav = left;
+                while(trav != NULL){
+                    if(data == trav->data) return true;
+                    else if(data < trav->data)
+                        trav = trav->left;
+                    else
+                        trav = trav->right;
+                        }
+                 return false;
+                 }
+                 
+             
+            else{
+            trav = right;
+            while(trav != NULL){
+                  if(data == trav->data) return true;
+                    else if(data < trav->data)
+                        trav = trav->left;
+                    else
+                        trav = trav->right;
+                        }
+                 return false;
+                 }  
+            }
+            
+            };
+            
+int main(){
+    /*Node* root = new Node(10);
+  
+    root->left = new Node(12);
+    root->right = new Node(6);
+    cout << root->left->data;*/
+    Tree* root = new Tree(10);
+    root->insert(5);
+    root->insert(12);
+    cout<<root->search(15)<<endl;
+    root->insert(15);
+    cout<<root->search(15)<<endl;
+    }
