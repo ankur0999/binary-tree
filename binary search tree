@@ -50,6 +50,56 @@ class Tree{
             insert_data(root, data);
             
         }
+        Node* Delete(Node* root, int d){
+            if(root == NULL)
+                return root;
+           
+            if(root->data == d){
+                if(root->left == NULL && root->right == NULL){
+                    delete[] root;
+                    return NULL:
+                    }
+                else if(root->left != NULL && root->right == NULL){
+                     Node* tmp = root->left;
+                     delete[] root;
+                     return tmp;
+                     }
+                 else if(root->right != NULL && root->left == NULL){
+                     Node* tmp = root->right;
+                     delete[] root;
+                     return tmp;
+                     }
+                 else if(root->right != NULL && root->left != NULL){
+                     Node* mini = getMin(root->right);
+                      
+                     root = mini;
+                     Delete(root->right, mini->data);
+                     Node* L = root->left;
+                     Node* R = root->right;
+                     delete[] root;
+                     
+                     
+                     
+                     
+               
+            }
+            else if(root->data > d){
+                return Delete(root->left, d);
+                }
+            else
+                return Delete(root->right, d);
+                }
+                
+            
+        void delete_data(int data){
+            Node* tmp = Delete(root, data);
+            }
+        Node* getMin(root){
+               if(root->left == NULL)
+                   return root;
+               return getMin(root->left);
+               }
+            
         
             };
 
